@@ -35,7 +35,7 @@ Steps to open the app:
 
                                    (or)
 
-1. Download the docker image and run the docker. (applicable for Linux system). Image is not pushed to the Docker Hub*.
+1. Download the docker image and run the docker. Image is not pushed to the Docker Hub or any other docker registries*.
 
 File Structure:
 
