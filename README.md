@@ -40,17 +40,27 @@ Steps to open the app:
 File Structure:
 
 Application
-|   app.py
-|   BOW_Model.ipynb
-|   Data Scientist Assignment (2020).docx
-|   Data_Extraction.py
-|   Dockerfile
-|   NER_Model.py
-|   output.docx
-|   output.txt
-|   README.md
-|   requirements.txt
-|   TFIDF_Model.ipynb
+
+|     app.py
+
+|     BOW_Model.ipynb
+
+|     Data Scientist Assignment (2020).docx
+
+|     Data_Extraction.py
+
+|     Dockerfile
+
+|     NER_Model.py
+
+|     output.txt
+
+|     README.md
+
+|     requirements.txt
+
+|     TFIDF_Model.ipynb
+
 |   
 +---.ipynb_checkpoints
 |       BOW_Model-checkpoint.ipynb
