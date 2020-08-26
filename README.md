@@ -42,25 +42,15 @@ File Structure:
 Application
 
 |     app.py
-
 |     BOW_Model.ipynb
-
 |     Data Scientist Assignment (2020).docx
-
 |     Data_Extraction.py
-
 |     Dockerfile
-
 |     NER_Model.py
-
 |     output.txt
-
 |     README.md
-
 |     requirements.txt
-
 |     TFIDF_Model.ipynb
-
 |   
 +---.ipynb_checkpoints
 |       BOW_Model-checkpoint.ipynb
@@ -108,6 +98,22 @@ Application
 Demo of the App:
 
 ![Landing page](https://github.com/mdevasish/Tech_in_Asia_Content_Analysis/blob/master/assets/TIA.gif)
+
+Steps to view the App:
+
+Prerequisites : Dockers is installed.
+
+1. Launch commandline interface after opening the folder 'Tech_in_Asia_Content_Analysis'
+
+2. Run the following commands. <port1> is an available port of the system and 5000 is a free port available on the ubuntu system of the Docker.
+    
+    docker build -t app .
+    
+    docker run --rm -p <port1>:5000 app
+  
+  Ex : docker run --rm -p 5000:5000 app
+
+3. If the above command execution is successful without any errors, launch a browser and hit the url : http://localhost:<port1>/
 
 Note : I would like to thank Ivan for giving an opprotunity to work on the articles (kind of an end to end project implementation) which has strengthened me by showing a new direction in my journey of learning. The last two weeks have been quiet hectic, fun, chaos yet productive.
 
