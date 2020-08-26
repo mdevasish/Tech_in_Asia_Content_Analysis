@@ -35,7 +35,7 @@ Steps to open the app:
 
                                    (or)
 
-Download the docker image and run the docker. (applicable for Linux system). Image is not pushed to the Docker Hub*.
+1. Download the docker image and run the docker. (applicable for Linux system). Image is not pushed to the Docker Hub*.
 
 File Structure:
 
@@ -90,6 +90,9 @@ Application
 \---__pycache__
         flask.cpython-38.pyc
         random.cpython-38.pyc
+
+Demo of the App:
+
 
 Note : I would like to thank Ivan for giving an opprotunity to work on the articles (kind of an end to end project implementation) which has strengthened me by showing a new direction in my journey of learning. The last two weeks have been quiet hectic, fun, chaos yet productive.
 

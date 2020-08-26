@@ -5,6 +5,7 @@ Created on Tue Aug 18 12:13:59 2020
 @author: mdevasish
 """
 
+import flask
 import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
@@ -12,10 +13,9 @@ import dash_html_components as html
 from dash.exceptions import PreventUpdate
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objs as go
 from ast import literal_eval
 from nltk.tokenize import sent_tokenize,word_tokenize
-import time
+
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -37,10 +37,11 @@ Topic 2: 0.004*"grab" + 0.003*"chinese" + 0.003*"deal" + 0.003*"tiktok" + 0.002*
 
 Topic 3: 0.004*"grab" + 0.002*"space" + 0.002*"deal" + 0.002*"fintech" + 0.002*"money" + 0.002*"develop" + 0.002*"claim" + 0.002*"logistics" + 0.002*"recently" + 0.002*"operation" + 0.002*"place" + 0.002*"expand" + 0.002*"scale" + 0.002*"merchant" + 0.002*"home" + 0.002*"account" + 0.002*"aim" + 0.002*"feature" + 0.002*"future" + 0.002*"exist"
 '''
+server = flask.Flask(__name__)
 
-app = dash.Dash(__name__,external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__,server = server, external_stylesheets=external_stylesheets)
 app.title = 'Tech in Asia - Articles'
-server = app.server
+
 
 layout = dict(
     autosize=True,
@@ -93,17 +94,18 @@ def populate_fields(value):
     if value is None:
         raise PreventUpdate
     print('Working')
+    #print(index)
     text = df.loc[value,'content']
     sent = sent_tokenize(text)
     words = [word_tokenize(each) for each in sent]
     summer = sum([len(each) for each in words])
-    return df.loc[value,'author.display_name'],summer,df.loc[value,'read_time'],df.loc[value,'content'],df.loc[value,'Organisations'],df.loc[value,'Locations'],text_content
+    return df.loc[value,'author.display_name'],str(summer),str(df.loc[value,'read_time']),df.loc[value,'content'],df.loc[value,'Organisations'],df.loc[value,'Locations'],text_content
 
 @app.callback(
      Output('plot','figure'),
     [Input('id_dropdown','value'),
-     Input('gload','value')])
-def plot(value,load):
+     ])
+def plot(value):
     '''
     Functions based on call back functionality. Call back functionality enables to render dynamic content based on the user inputs on the application.
 
@@ -134,15 +136,6 @@ def plot(value,load):
         final = z.append(pd.DataFrame(result,columns = ['Topic','Percentage']),ignore_index = True)
         return generate_plot(final)
 
-@app.callback(Output('outLoading','children'),
-              [Input('inLoading','value')])
-def Loading(value):
-    '''
-    Function to implement a loading icon
-    '''
-    time.sleep(1)
-    return True
-
 @app.callback(Output('plot', 'style'),
              [Input('id_dropdown','value')])
 def hide_graph(input):
@@ -172,8 +165,7 @@ html.Div([
         html.Div([                     # container_Article start
             html.Label('ID of the Article'),
             dcc.Dropdown(id = 'id_dropdown',
-                      options = [{'label' : x, 'value' : x} for x in index 
-                                ],
+                      options = [{'label' : x, 'value' : x} for x in index],
                       placeholder = 'Enter the ID of the Article',
                       ),
             ],id = 'container_article',className='three columns'),
@@ -218,14 +210,14 @@ html.Div([
                 #html.Label('Topic Distribution'),
                 dcc.Loading(id = 'gload',type = 'graph',children = dcc.Graph(id = 'plot',
                           style = {'height' : 350,'displayModeBar': False})),
-                dcc.Loading(id = 'inLoading',type = 'circle',children = html.Div(id = 'outLoading'),fullscreen = True),
+                
                 dcc.Markdown('''
                              * Topic 0 : Funding and strategy plans of Gojek
                              * Topic 1 : Food and Goods delivery during pandemic by Grab, Gojek and Shopee
                              * Topic 2 : Unclear topic about Grab, Chinese Tiktok and Gojek
                              * Topic 3 : Expansion plans of Grab into Fintech space by acquiring Banking liscence
                              ''',
-                             style = {'font-size' : 12})
+                             style = {'font-size' : 8})
                 ],id = 'container_plot', className = 'seven columns')
             ],id = 'container_2',style = {'height' : '80vh','display' : 'flex'},className = 'pretty_container'),
         html.Br(),
@@ -248,8 +240,8 @@ html.Div([
                              #value = text,
                              style = {'width' : '100%','height' : 300})
                 ],id = 'word_dist',className = 'seven columns')
-            ],id = 'container_3',style = {'height' : '50vh'},className = 'pretty_container')
-        ],
+            ],id = 'container_3',style = {'height' : '50vh'},className = 'pretty_container'),
+           ],
         id = 'main_container',className = 'pretty_container',
         style={
         "display": "flex",
@@ -259,4 +251,4 @@ html.Div([
     )
 
 if __name__ == '__main__':
-    app.server.run(debug=True, threaded=True, port=5000)
+    app.server.run(debug=True, host='0.0.0.0',port=5000)
