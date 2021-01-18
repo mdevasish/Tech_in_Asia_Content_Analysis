@@ -1,5 +1,4 @@
 # Tech_in_Asia_Content_Analysis
-Assignment for the role of Data Scientist 
 
 Author : Manikantha Devasish
 
@@ -15,12 +14,7 @@ Challenges and Limitations:
 3. As the topics are from Tech in Asia where major articles are related to aggregated news articles around the world and few articles are specific happenings in specific sectors, segregating the topics is a challenge.
 4. Chioce of models to proceed with. Even though the results from Bag of words and Tfidf model were close, I chose to go with the Bag of words model because of ease of judgement of topics from the topic word distribution.
 6. Named Entity Recognition models developed by Spacy/nltk are not the ideal way of extracting the names of the organisation or regions but due to limited availability of time, I had to implement exisitng NER models which are not completely accurate.
-7. Javascript : As per the assignment, the visualisation was to be developed in JavaScript. I have planned to pick up the necessary skills in two weeks of time for the visualisation but failed in picking up the skills completely, but later gave a thought about implementing the visualisation in Dash and proceeded with it due to limited amount of time.
 
-
-Takeaways : 
-1. Equipped myself with JavaScript basic skills. Started learning d3.js .
-2. After analysing the results of Named Entity Recognition, I have explored the ways to train the pretrained models to give better results.
 
 Libraries used in the project are captured in requirements.txt
 
@@ -114,7 +108,5 @@ Prerequisites : Dockers is installed.
   Ex : docker run --rm -p 5000:5000 app
 
 3. If the above command execution is successful without any errors, launch a browser and hit the url : http://localhost:<port1>/
-
-Note : I would like to thank Ivan for giving an opprotunity to work on the articles (kind of an end to end project implementation) which has strengthened me by showing a new direction in my journey of learning. The last two weeks have been quiet hectic, fun, chaos yet productive.
 
 Thank you.
