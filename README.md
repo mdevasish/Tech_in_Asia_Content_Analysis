@@ -3,7 +3,7 @@
 Author : Manikantha Devasish
 
 Approach : 
-1. Extract data from the APIs provided in the doc 'Data Scientist Assignment (2020).docx' and save it.
+1. Extract data from the APIs provided and save it.
 2. Explore and clean the data.
 3. Implemet a topic Modelling to discover the topics form the articles.
 4. Create a visualisation and convey the results using Dash framework of plotly.
