@@ -32,7 +32,7 @@ joblib==0.16.0
 MarkupSafe==1.1.1
 more-itertools==8.4.0
 murmurhash==1.0.2
-nltk==3.5
+nltk==3.6.6
 numexpr==2.7.1
 numpy==1.19.1
 packaging==20.4
